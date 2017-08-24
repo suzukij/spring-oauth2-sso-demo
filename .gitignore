@@ -1,0 +1,13 @@
+authorization/.springBeans
+authorization/.project
+authorization/.classpath
+authorization/.settings/
+authorization/target/
+client/.project
+client/.classpath
+client/.springBeans
+client/.idea/
+client/.settings/
+authorization/.idea/
+resource/.idea/
+authorization/authorization.iml
