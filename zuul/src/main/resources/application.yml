@@ -1,0 +1,52 @@
+server:
+  port: 9999
+  use-forward-headers: true 
+spring.application.name: zuul
+
+zuul:
+  add-proxy-headers: true
+  ignored-services: "*"
+  routes:
+    api:
+      path: /api/**
+      service-id: resource
+      sensitiveHeaders:
+#      url: http://localhost:18081/api
+      strip-prefix: false
+    uaa:
+      path: /uaa/**
+      service-id: uaa
+      sensitiveHeaders:
+#      url: http://localhost:18080/uaa
+      strip-prefix: false
+    client:
+      path: /client/**
+      service-id: client
+      sensitiveHeaders:
+#      url: http://localhost:8080/client
+      strip-prefix: false                                    
+    test:
+      path: /test/**
+      service-id: test
+      sensitiveHeaders:
+#      url: http://localhost:8080/test
+      strip-prefix: false
+
+eureka.client.service-url.defaultZone: http://localhost:8761/eureka/
+
+auth-server: http://localhost:18080/uaa
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      client-id: demo
+      client-secret: demo
+      access-token-uri: ${auth-server}/oauth/token
+      user-authorization-uri: ${auth-server}/oauth/authorize
+      scope: read, write
+    resource:
+      
+      token-info-uri: ${auth-server}/oauth/check_token
+
+     
